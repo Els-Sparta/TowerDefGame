@@ -8,14 +8,24 @@ namespace TreehouseDefense
     {
       Map map = new Map(8, 5);
 
-      Point point = new Point(4, 2);
-
-      bool isOnMap = map.OnMap(point);
-      Console.WriteLine(isOnMap);
-
-      point = new Point (8, 5);
-      isOnMap = map.OnMap(point);
-      Console.WriteLine(isOnMap);
+      try
+      {
+        MapLocation maplocation = new MapLocation(20, 20, map);
+      }
+      //pass the exception message from the MapLocation class, typically passed through as a paramter called ex
+      //Order of catch expressions are important, from specifc to more general
+      catch(OutofBoundsException)
+      {
+        Console.WriteLine(ex.Message);
+      }
+      catch(TreehouseDefenseException)
+      {
+        Console.WriteLine("Unhandled TreehouseDefenseException")
+      }
+      catch(Exception)
+      {
+        Console.WriteLine("Unhandled Exception")
+      }
     }
   }
 }
